@@ -179,6 +179,9 @@ function getLastReview( obj ) {
 
 getLastReview( reviews )
 
+
+
+
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
 /** 💪💪💪💪💪💪💪💪💪💪 STRETCH 1: 💪💪💪💪💪💪💪💪💪💪 
@@ -193,11 +196,38 @@ Use the getReviewsByRating function below to do the following:
     {name:"Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay."}
   ]
 */
+/*
+function getReviewByRating( array, rate ) {
+  let rangeBottom = Math.floor( rate );
+  let rangeTop = Math.ceil( rate );
+  let reviewRange = [];
+  for ( let i = 0; i < array.length; i++ ) {
+    if ( array[ i ].rating >= rangeBottom && array[ i ].rating < rangeTop ) {
+      reviewRange.push( array[ i ] )
+    }
+  }
+  return reviewRange
+}
+console.log( getReviewByRating( reviews, 4.5 ) )
+*/
+
+
+/*
+function arrayFilter( arr, func ) {
+  for ( let elem of arr ) {
+    if ( func( elem ) ) {
+      return elem
+    }
+  }
+  return undefined
+}
+*/
 
 function getReviewByRating( arr, numb ) {
   let result;
-  result = arr.filter( x => {
-    return ( numb <= x.rating && x.rating < numb + 1 );
+  result = arr.filter( curElement => {
+ return ( Math.floor( numb ) <= curElement.rating && curElement.rating < Math.ceil( numb ) );
+
   } );
 
   return result;
@@ -216,9 +246,11 @@ Use the getLongReviews function below to do the following:
     {name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." }
   ]
 */
-
+// curElement === arr[i] == object
 function getLongReviews( arr ) {
-  let result = arr.filter( x => x.feedback.length >= 15 )
+  let result = arr.filter( ( curElement ) => {
+    return curElement.feedback.length >= 15;
+  } )
   return result;
 }
 console.log( getLongReviews( reviews ) )
